@@ -1,0 +1,33 @@
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        
+        if(strs.length == 0) return new ArrayList();
+        // This is to detemine whether the length of the string is 0
+        
+        Map<String,List> ans = new HashMap<String, List>();
+        // Create a Hashmap cause it's easy to record value 
+        
+        for (String s : strs){
+           
+            char [] a = s.toCharArray();
+            //Get first string convert it to a char Array
+
+            Arrays.sort(a);
+            // Sort the array cause i need to compare each word, remember that the key thing about anagrams is whether they have same letter with same amout
+
+            String key = String.valueOf(a);
+            // After sort i convert it back to String cause i want the output is String instead of an array of character
+
+            if(!ans.containsKey(key)) ans.put(key,new ArrayList());
+            //If Hashtable not have this String before, then i create a new Arraylist and put it into the map.
+            
+            ans.get(key).add(s);
+            //If there already exist key in the table, just get the value and add String s into the table.
+        }
+        
+        return new ArrayList(ans.values());
+        //Finally return the arraylist
+    }
+}
+
